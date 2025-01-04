@@ -43,6 +43,8 @@ body {
 
 /* The Checkerboard with 3D Depth */
 #board {
+    transition: transform 0.5s ease-in-out;
+    transform-origin: center center;
     display: grid;
     grid-template-columns: repeat(8, 60px);
     grid-template-rows: repeat(8, 60px);
@@ -181,4 +183,22 @@ body {
 /* Add Depth Effect for Base When Flipped */
 #board-wrapper.flip::before {
     transform: translateZ(-30px) rotateY(180deg);
+}
+
+/* Active Piece Highlight */
+.square.active {
+    outline: 3px solid yellow;
+}
+
+/* Valid Move Highlight */
+.square.valid-move {
+    background-color: #90ee90 !important;
+    opacity: 0.8;
+}
+
+/* King Piece Styling */
+.piece.king {
+    background: radial-gradient(circle, gold, orange);
+    border: 2px solid #c9a62b;
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.7);
 }
