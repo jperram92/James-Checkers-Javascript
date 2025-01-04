@@ -127,9 +127,20 @@ body {
 
 /* Active Piece Highlight */
 .piece.active {
-    outline: 3px solid yellow;
-    box-shadow: 0 0 15px yellow;
-    transform: scale(1.2) translateY(-10px) translateZ(25px);
+    outline: 4px solid yellow;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.7);
+    transform: scale(1.2) translateY(-10px) translateZ(30px);
+    animation: pulse-highlight 1s infinite alternate;
+}
+
+/* Pulsating Animation */
+@keyframes pulse-highlight {
+    0% {
+        box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 30px 15px rgba(255, 255, 0, 1);
+    }
 }
 
 /* Controls Panel */
@@ -201,4 +212,67 @@ body {
     background: radial-gradient(circle, gold, orange);
     border: 2px solid #c9a62b;
     box-shadow: 0 4px 8px rgba(255, 215, 0, 0.7);
+}
+
+#controls button:last-child {
+    background: linear-gradient(to bottom, #ff5252, #d32f2f);
+}
+
+#controls button:last-child:hover {
+    background: linear-gradient(to bottom, #ff7961, #e57373);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Victory Screen Styling */
+#victory-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    text-align: center;
+    animation: fade-in 1s ease-in-out;
+}
+
+#victory-message {
+    font-size: 3rem;
+    color: gold;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+#victory-screen button {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#victory-screen button:hover {
+    background: #388E3C;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Victory Animation */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
