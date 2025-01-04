@@ -1,0 +1,184 @@
+/* General Styling */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f5f0e6;
+    font-family: Arial, sans-serif;
+}
+
+/* Game Container with Perspective */
+#game-container {
+    perspective: 1500px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Board Wrapper for Depth and Rotation */
+#board-wrapper {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+    margin-bottom: 20px;
+}
+
+/* Elevated Base for the Board */
+#board-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    background: linear-gradient(to bottom, #8c5233, #4b382a);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    transform-origin: center;
+    transform: translateZ(-30px) rotateX(0deg);
+    z-index: -1;
+}
+
+/* The Checkerboard with 3D Depth */
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border: 4px solid #4b382a;
+    background: linear-gradient(135deg, #d2b48c, #a0522d);
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Add 3D Depth to Squares */
+.square {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.light {
+    background: linear-gradient(to bottom, #f2d2b6, #e8c19a);
+}
+
+.dark {
+    background: linear-gradient(to bottom, #8c5233, #6b3f2d);
+}
+
+/* Add 3D effect to squares */
+.square::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    transform: translateZ(-10px);
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Checker Pieces with Elevation */
+.piece {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    transform: translateZ(15px);
+}
+
+/* Piece Shine Effect */
+.piece::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 20%;
+    height: 20%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Red and Black Pieces */
+.piece.red {
+    background: radial-gradient(circle, #ff4d4d, #c00);
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5);
+}
+
+.piece.black {
+    background: radial-gradient(circle, #333, #000);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover Effect on Pieces */
+.piece:hover {
+    transform: scale(1.1) translateY(-5px) translateZ(20px);
+}
+
+/* Active Piece Highlight */
+.piece.active {
+    outline: 3px solid yellow;
+    box-shadow: 0 0 15px yellow;
+    transform: scale(1.2) translateY(-10px) translateZ(25px);
+}
+
+/* Controls Panel */
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#controls button {
+    background: linear-gradient(to bottom, #4CAF50, #388E3C);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-size: 14px;
+}
+
+#controls button:hover {
+    background: linear-gradient(to bottom, #66BB6A, #43A047);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #board {
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(8, 40px);
+    }
+
+    .piece {
+        width: 35px;
+        height: 35px;
+    }
+
+    #controls button {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+
+/* Flip Board Rotation Logic */
+#board-wrapper.flip {
+    transform: rotateX(45deg) rotateY(180deg);
+}
+
+/* Add Depth Effect for Base When Flipped */
+#board-wrapper.flip::before {
+    transform: translateZ(-30px) rotateY(180deg);
+}

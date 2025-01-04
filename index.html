@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Checkers Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game Container with Perspective -->
+    <div id="game-container">
+        <div id="board-wrapper">
+            <div id="board"></div>
+        </div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div id="controls">
+        <button onclick="flipBoard()" aria-label="Flip the board">Flip Board</button>
+        <button onclick="rotateBoard(90)" aria-label="Rotate board by 90 degrees">Rotate 90°</button>
+        <button onclick="rotateBoard(180)" aria-label="Rotate board by 180 degrees">Rotate 180°</button>
+        <button onclick="rotateBoard(270)" aria-label="Rotate board by 270 degrees">Rotate 270°</button>
+        <button onclick="rotateBoard(0)" aria-label="Reset board rotation">Reset</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
